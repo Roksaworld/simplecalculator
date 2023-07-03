@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Calculator</title>
+  <style>
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      background: radial-gradient(circle at -8.9% 51.2%, rgb(255, 124, 0) 0%, rgb(255, 124, 0) 15.9%, rgb(255, 163, 77) 15.9%, rgb(255, 163, 77) 24.4%, rgb(19, 30, 37) 24.5%, rgb(19, 30, 37) 66%);
+      width: 30vw;
+      height: 50vh;
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+      box-shadow: 0 0 10px black;
+      padding: 20px;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .input {
+      display: flex;
+      width: 100%;
+      height: 40px;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .input input {
+      width: 60%;
+      height: 100%;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      text-align: right;
+      padding-right: 5px;
+      font-size: 16px;
+    }
+
+    .action-dropdown {
+      width: 60%;
+      height: 40px;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 40px;
+      margin-bottom: 10px;
+    }
+
+    .button-container button {
+      width: 20%;
+      height: 100%;
+      font-weight: bold;
+      background: rgb(255, 163, 77) 15.9%;
+      color: black;
+      outline: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 0 5px;
+    }
+
+    .result-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 40px;
+    }
+
+    .result {
+      font-style: italic;
+      font-size: 16px;
+    }
+
+    .reset-button {
+      width: 40%;
+      height: 40px;
+      font-weight: bold;
+      background: rgb(255, 163, 77) 15.9%;
+      color: black;
+      outline: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div class="container">
+      <h1 class="title">Simple Calculator</h1>
+      <div class="input">
+        <input type="number" id="num1" placeholder="Number 1">
+      </div>
+      <div class="input">
+        <input type="number" id="num2" placeholder="Number 2">
+      </div>
+      <div class="input">
+        <select class="action-dropdown" id="action">
+          <option value="+">+</option>
+          <option value="-">-</option>
+          <option value="*">*</option>
+          <option value="/">/</option>
+        </select>
+      </div>
+      <div class="button-container">
+        <button onclick="calculate()">Calculate</button>
+      </div>
+      <div class="result-container">
+        <p class="result" id="result"></p>
+      </div>
+      <div class="button-container">
+        <button class="reset-button" onclick="reset()">Reset</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function calculate() {
+      var num1 = parseFloat(document.getElementById("num1").value);
+      var num2 = parseFloat(document.getElementById("num2").value);
+      var action = document.getElementById("action").value;
+
+      var result;
+      switch (action) {
+        case '+':
+          result = num1 + num2;
+          break;
+        case '-':
+          result = num1 - num2;
+          break;
+        case '*':
+          result = num1 * num2;
+          break;
+        case '/':
+          result = num1 / num2;
+          break;
+        default:
+          result = 'Invalid action';
+          break;
+      }
+
+      document.getElementById("result").textContent = 'Result: ' + result;
+    }
+
+    function reset() {
+      document.getElementById("num1").value = "";
+      document.getElementById("num2").value = "";
+      document.getElementById("action").selectedIndex = 0;
+      document.getElementById("result").textContent = "";
+    }
+  </script>
+</body>
+
+</html>
